@@ -1,5 +1,6 @@
 package com.spring.springdto.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
@@ -26,5 +27,6 @@ public class Student {
     private String age;
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "student")
+    @JsonIgnore
     private List<Course> privateCourses;
 }
