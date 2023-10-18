@@ -4,6 +4,7 @@ import com.spring.springdto.model.Student;
 import com.spring.springdto.model.StudentDTO;
 import com.spring.springdto.model.StudentResponse;
 import com.spring.springdto.repository.StudentRepo;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,9 @@ import java.util.List;
 public class StudentService {
 
     @Autowired
+    private ModelMapper modelMapper;
+
+    @Autowired
     private StudentRepo studentRepo;
 
     public List<StudentDTO> getAllStudents(){
@@ -21,9 +25,9 @@ public class StudentService {
         List<StudentDTO> studentDTOS = new ArrayList<>();
 
         for (Student student : students){
-            StudentDTO studentDTO = new StudentDTO();
-            studentDTO.setId(student.getId());
-            studentDTO.setName(student.getName());
+            StudentDTO studentDTO = modelMapper.map(student,StudentDTO.class);
+//            studentDTO.setId(student.getId());
+//            studentDTO.setName(student.getName());
             studentDTOS.add(studentDTO);
         }
 
@@ -33,8 +37,9 @@ public class StudentService {
 
     public StudentResponse getStudent(Long id){
         Student student = studentRepo.findById(id).get();
-        StudentResponse studentResponse = new StudentResponse();
-        studentResponse.setName(student.getName());
+
+        // using modelMapper: attribute name must same in source and destination
+        StudentResponse studentResponse = modelMapper.map(student,StudentResponse.class);
 
         return studentResponse;
     }
