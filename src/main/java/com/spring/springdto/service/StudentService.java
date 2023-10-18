@@ -55,18 +55,19 @@ public class StudentService {
     }
 
     public DtoStudentCourse getStudentCourses(List<Long> ids) {
-        DtoStudentCourse dtoStudentCourse = new DtoStudentCourse();
-        Student student = courseRepo.findStudentByCourseId(ids.get(0));
-        dtoStudentCourse.setId(student.getId());
-        dtoStudentCourse.setName(student.getName());
+        DtoStudentCourse dtoStudentCourse = modelMapper.map(courseRepo.findStudentByCourseId(ids.get(0)),DtoStudentCourse.class );
+//        DtoStudentCourse dtoStudentCourse = new DtoStudentCourse();
+//        Student student = courseRepo.findStudentByCourseId(ids.get(0));
+//        dtoStudentCourse.setId(student.getId());
+//        dtoStudentCourse.setName(student.getName());
 
-        List<Course> courses= courseRepo.listCoursesInIds(ids);
-        for (Course course:courses) {
-            DtoCourse dtoCourse = new DtoCourse();
-            dtoCourse.setId(course.getId());
-            dtoCourse.setCost(course.getCost());
-            dtoStudentCourse.getCourses().add(dtoCourse);
-        }
+//        List<Course> courses= courseRepo.listCoursesInIds(ids);
+//        for (Course course:courses) {
+//            DtoCourse dtoCourse = new DtoCourse();
+//            dtoCourse.setId(course.getId());
+//            dtoCourse.setCost(course.getCost());
+//            dtoStudentCourse.getCourses().add(dtoCourse);
+//        }
         return dtoStudentCourse;
     }
 }
