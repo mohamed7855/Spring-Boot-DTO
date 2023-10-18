@@ -1,6 +1,7 @@
 package com.spring.springdto.controller;
 
 import com.spring.springdto.model.Course;
+import com.spring.springdto.model.CourseDTO;
 import com.spring.springdto.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,7 @@ public class CourseController {
     private CourseService courseService;
 
     @GetMapping("/allCourses")
-    public List<Course> getAllStudents(){
+    public List<CourseDTO> getAllStudents(){
         return courseService.getAllStudents();
     }
 }
