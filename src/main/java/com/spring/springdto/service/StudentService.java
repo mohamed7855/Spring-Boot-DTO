@@ -39,7 +39,11 @@ public class StudentService {
         Student student = studentRepo.findById(id).get();
 
         // using modelMapper: attribute name must same in source and destination
-        StudentResponse studentResponse = modelMapper.map(student,StudentResponse.class);
+        StudentResponse studentResponse = new StudentResponse();
+        studentResponse.setPhone("44444444");
+        modelMapper.map(student,studentResponse);
+        // StudentResponse studentResponse = modelMapper.map(student,StudentResponse.class);
+        // studentResponse.setPhone("4444444");
 
         return studentResponse;
     }

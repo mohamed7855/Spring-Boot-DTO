@@ -8,4 +8,8 @@ import lombok.Setter;
 public class StudentResponse {
 
     private String name;
+
+    // when ModelMapper run map student into StudentResponse
+    //  and put phone=null because not found in student
+    private String phone;
 }
