@@ -1,8 +1,7 @@
 package com.spring.springdto.service;
 
-import com.spring.springdto.model.Student;
-import com.spring.springdto.model.StudentDTO;
-import com.spring.springdto.model.StudentResponse;
+import com.spring.springdto.model.*;
+import com.spring.springdto.repository.CourseRepo;
 import com.spring.springdto.repository.StudentRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,9 @@ import java.util.List;
 
 @Service
 public class StudentService {
+
+    @Autowired
+    private CourseRepo courseRepo;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -50,5 +52,21 @@ public class StudentService {
         // studentResponse.setPhone("4444444");
 
         return studentResponse;
+    }
+
+    public DtoStudentCourse getStudentCourses(List<Long> ids) {
+        DtoStudentCourse dtoStudentCourse = new DtoStudentCourse();
+        Student student = courseRepo.findStudentByCourseId(ids.get(0));
+        dtoStudentCourse.setId(student.getId());
+        dtoStudentCourse.setName(student.getName());
+
+        List<Course> courses= courseRepo.listCoursesInIds(ids);
+        for (Course course:courses) {
+            DtoCourse dtoCourse = new DtoCourse();
+            dtoCourse.setId(course.getId());
+            dtoCourse.setCost(course.getCost());
+            dtoStudentCourse.getCourses().add(dtoCourse);
+        }
+        return dtoStudentCourse;
     }
 }
