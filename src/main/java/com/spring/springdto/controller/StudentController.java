@@ -2,6 +2,7 @@ package com.spring.springdto.controller;
 
 import com.spring.springdto.model.Student;
 import com.spring.springdto.model.StudentDTO;
+import com.spring.springdto.model.StudentResponse;
 import com.spring.springdto.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,7 @@ public class StudentController {
 
     // http://localhost:8080/student/getStudent?id=1
     @GetMapping("/getStudent")
-    public Student getStudent(@RequestParam("id") Long id){
+    public StudentResponse getStudent(@RequestParam("id") Long id){
         return studentService.getStudent(id);
     }
 }
