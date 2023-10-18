@@ -35,6 +35,10 @@ public class StudentService {
 
     }
 
+    public List<Student> getAllStudentsAfterRelation(){
+        return studentRepo.findAll();
+    }
+
     public StudentResponse getStudent(Long id){
         Student student = studentRepo.findById(id).get();
 

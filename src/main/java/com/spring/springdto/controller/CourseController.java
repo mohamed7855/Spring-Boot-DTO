@@ -18,7 +18,13 @@ public class CourseController {
     private CourseService courseService;
 
     @GetMapping("/allCourses")
-    public List<CourseDTO> getAllStudents(){
-        return courseService.getAllStudents();
+    public List<CourseDTO> getAllCourses(){
+        return courseService.getAllCourses();
+    }
+
+    // http://localhost:8080/course/allCoursesAfterRelation
+    @GetMapping("/allCoursesAfterRelation")
+    public List<Course> getAllCoursesAfterRelation(){
+        return courseService.getAllCoursesAfterRelation();
     }
 }

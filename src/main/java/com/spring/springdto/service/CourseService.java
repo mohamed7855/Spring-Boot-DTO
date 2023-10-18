@@ -16,7 +16,7 @@ public class CourseService {
     @Autowired
     private CourseRepo courseRepo;
 
-    public List<CourseDTO> getAllStudents(){
+    public List<CourseDTO> getAllCourses(){
         List<Course> courses = courseRepo.findAll();
         List<CourseDTO> courseDTOS = new ArrayList<>();
 
@@ -28,5 +28,9 @@ public class CourseService {
         }
 
         return courseDTOS;
+    }
+
+    public List<Course> getAllCoursesAfterRelation(){
+        return courseRepo.findAll();
     }
 }
